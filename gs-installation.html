@@ -1,0 +1,88 @@
+---
+title: Cantiga installation
+layout: default
+---
+			
+<!-- Main -->
+	<section class="wrapper style1">
+		<div class="container">
+			<div id="content">
+
+				<!-- Content -->
+			
+					<article>
+						<header>
+							<h2>Installation</h2>
+							<p>Learn how to install your own Cantiga instance</p>
+						</header>
+						
+						<h2>Requirements</h2>
+						
+						<p>Minimum server requirements:</p>
+						
+						<ul class="default">
+                            <li>Any HTTP server</li>
+                            <li>PHP 7.0</li>
+                            <li>The following PHP extensions: gd, intl, calendar, PDO, openssl</li>
+                            <li>MySQL or MariaDB database</li>
+                            <li>Any mail server</li>
+						</ul>
+						
+						<p>Recommended additional features:</p>
+						
+						<ul class="default">
+                            <li>Cron or any other task scheduler</li>
+                            <li>Shell access to the server</li>
+                        </ul>
+                        
+                        <h2>Installation</h2>
+                        
+                        <p>Visit <a href="download.html">Download</a> page and get a tarball with the sources of Cantiga,
+                        or clone them directly from Git repository:</p>
+                        
+                        <pre><code># mkdir cantiga
+# cd cantiga
+# git clone https://github.com/zyxist/cantiga.git .</code></pre>
+
+                        <p>Create an empty MySQL/MariaDB database and install the SQL files from the <code>db/schema</code>
+                        directory in the order they are enumerated. Finally, install the SQL file <code>db/fixtures/initial.sql</code>.
+                        You can also change the login of the default user, by editing the only row in <code>cantiga_users</code> table.</p>
+                        
+                        <p>The final step is editing some files. Create a new file <code>app/config/parameters.yml</code> and copy the contents of <code>app/config/parameters.yml.dist</code> to it. Explanation of options:</p>
+                        
+                        <ul class="default">
+                        <li><code>database_host</code> - host the database is available at,</li>
+                        <li><code>database_port</code> - database port (leave null to use default one),</li>
+                        <li><code>database_name</code> - database name,</li>
+                        <li><code>database_user</code> - db user with rights to access that database,</li>
+                        <li><code>database_password</code> - db password,</li>
+                        </ul>
+                        
+                        <p>The options starting with mailer specify the settings of the mail server. If you install the system on a production server, you must provide the configuration of the production SMTP server and account used for sending the e-mails. For development purposes, you can use the <a href="https://mailcatcher.me">mailcatcher</a> application which emulates a
+                        mail server and provides a nice web interface to inspect the mailing.</p>
+                        
+                        <p>Remaining options:</p>
+                        
+                        <ul class="default">
+                        <li><code>secret</code> - put here a random string and do not share it with anyone,</li>
+                        <li><code>locale</code> - default language,</li>
+                        <li><code>defaultTimezone</code> - default timezone, specified as Country/City,</li>
+                        <li><code>sourceMail</code> - mail sender address added to the sent mail messages,</li>
+                        <li><code>recaptcha_siteKey</code> and <code>recaptcha_secretKey</code> - integration with reCaptcha.</li>
+                        </ul>
+                        
+                        <p>Create the <code>app/Branding.php</code> and copy the contents of <code>app/Branding.example.php</code> to it.
+                        Here you can customize the application, add a custom name, logo, etc.</p>
+
+                    <p>That's all. If you have a standalone web server, point it to <code>web/</code> directory as the home directory. Do not make the rest of the
+                    directories accessible through the web server. For development purposes, you can use a HTTP server embedded in PHP. Just run the following command:</p>
+
+                    <pre><code># php bin/console server:run</code></pre>
+                    
+                    <p>The web application will be available under <a href="http://localhost:8000/">http://localhost:8000/</a> address.
+                    The default credentials are <strong>admin</strong> - <strong>Admin12345</strong></p>
+					</article>
+		
+			</div>
+		</div>
+	</section>			

@@ -1,0 +1,69 @@
+<!DOCTYPE HTML>
+<!--
+	Arcana by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Cantiga Project</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="{{ site.baseurl }}/assets/css/ie/html5shiv.js"></script><![endif]-->
+		<script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
+		<script src="{{ site.baseurl }}/assets/js/jquery.dropotron.min.js"></script>
+		<script src="{{ site.baseurl }}/assets/js/skel.min.js"></script>
+		<script src="{{ site.baseurl }}/assets/js/skel-layers.min.js"></script>
+		<script src="{{ site.baseurl }}/assets/js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/skel.css" />
+			<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style.css" />
+			<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/style-wide.css" />
+		</noscript>
+		<!--[if lte IE 8]><link rel="stylesheet" href="{{ site.baseurl }}/assets/css/ie/v8.css" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Header -->
+			<div id="header">
+						
+				<!-- Logo -->
+                    <p><img src="{{ site.baseurl }}/assets/images/cantiga-logo.png" alt="logo" width="64px" /></p>
+					<h1><a href="{{ site.baseurl }}/index.html" id="logo">Cantiga Project</a></h1>
+				
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							{% assign current = page.url | downcase | split: '/' %}
+							<li {% if current[1] == 'index.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/index.html">Home</a></li>
+							<li {% if current[1] == 'about.html' %}class="current"{% endif %}>
+								<a href="{{ site.baseurl }}/about.html">About</a>
+								<ul>
+									<li><a href="{{ site.baseurl }}/about.html#about">About project</a></li>
+									<li><a href="{{ site.baseurl }}/about.html#mission">Mission</a></li>
+									<li><a href="{{ site.baseurl }}/about.html#case-studies">Case studies</a></li>
+									<li><a href="{{ site.baseurl }}/about.html#team">Team</a></li>
+								</ul>
+							</li>
+							<li {% if current[1] == 'features.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/features.html">Features</a></li>
+							<li {% if current[1] == 'gs-installation.html' || currnet[1] == 'gs-get-help.html' %}class="current"{% endif %}>
+								<a href="">Getting started</a>
+								<ul>
+									<li><a href="gs-installation.html">Installation</a></li>
+									<li><a href="gs-get-help.html">Get help</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="">Developers</a>
+								<ul>
+									<li><a href="http://github.com/zyxist/cantiga">Cantiga on Github</a></li>
+									<li><a href="https://github.com/zyxist/cantiga/wiki">Project wiki</a></li>
+									<li><a href="#">Contributing</a></li>
+								</ul>
+							</li>
+							<li {% if current[1] == 'download.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/download.html">Download</a></li>
+						</ul>
+					</nav>
+
+			</div>
