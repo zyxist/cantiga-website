@@ -2,14 +2,9 @@
 title: Cantiga installation
 layout: default
 ---
-			
-<!-- Main -->
 	<section class="wrapper style1">
 		<div class="container">
 			<div id="content">
-
-				<!-- Content -->
-			
 					<article>
 						<header>
 							<h2>Installation</h2>
@@ -25,7 +20,8 @@ layout: default
                             <li>PHP 7.0</li>
                             <li>The following PHP extensions: gd, intl, calendar, PDO, openssl</li>
                             <li>MySQL or MariaDB database</li>
-                            <li>Any mail server</li>
+                            <li>Any mail server with a mail account</li>
+                            <li><a href="http://getcomposer.org/">Composer</a> dependency manager</li>
 						</ul>
 						
 						<p>Recommended additional features:</p>
@@ -43,46 +39,74 @@ layout: default
                         <pre><code># mkdir cantiga
 # cd cantiga
 # git clone https://github.com/zyxist/cantiga.git .</code></pre>
-
-                        <p>Create an empty MySQL/MariaDB database and install the SQL files from the <code>db/schema</code>
-                        directory in the order they are enumerated. Finally, install the SQL file <code>db/fixtures/initial.sql</code>.
-                        You can also change the login of the default user, by editing the only row in <code>cantiga_users</code> table.</p>
                         
-                        <p>The final step is editing some files. Create a new file <code>app/config/parameters.yml</code> and copy the contents of <code>app/config/parameters.yml.dist</code> to it. Explanation of options:</p>
+                        <p>Create a new file <code>app/config/parameters.yml</code> and copy the contents of <code>app/config/parameters.yml.dist</code> to it. Explanation of options:</p>
                         
                         <ul class="default">
-                        <li><code>database_host</code> - host the database is available at,</li>
-                        <li><code>database_port</code> - database port (leave null to use default one),</li>
-                        <li><code>database_name</code> - database name,</li>
-                        <li><code>database_user</code> - db user with rights to access that database,</li>
-                        <li><code>database_password</code> - db password,</li>
+                            <li><code>database_host</code> - host the database is available at,</li>
+                            <li><code>database_port</code> - database port (leave null to use default one),</li>
+                            <li><code>database_name</code> - database name,</li>
+                            <li><code>database_user</code> - db user with rights to access that database,</li>
+                            <li><code>database_password</code> - db password,</li>
+                            <li><code>mailer_transport</code> - protocol used for sending e-mails (<code>smtp</code> by default),</li>
+                            <li><code>mailer_host</code> - address of the mail server,</li>
+                            <li><code>mailer_user</code> - name of the account used for sending e-mails,</li>
+                            <li><code>mailer_password</code> - password for the mail account,</li>
                         </ul>
-                        
-                        <p>The options starting with mailer specify the settings of the mail server. If you install the system on a production server, you must provide the configuration of the production SMTP server and account used for sending the e-mails. For development purposes, you can use the <a href="https://mailcatcher.me">mailcatcher</a> application which emulates a
-                        mail server and provides a nice web interface to inspect the mailing.</p>
                         
                         <p>Remaining options:</p>
                         
                         <ul class="default">
-                        <li><code>secret</code> - put here a random string and do not share it with anyone,</li>
-                        <li><code>locale</code> - default language,</li>
-                        <li><code>defaultTimezone</code> - default timezone, specified as Country/City,</li>
-                        <li><code>sourceMail</code> - mail sender address added to the sent mail messages,</li>
-                        <li><code>recaptcha_siteKey</code> and <code>recaptcha_secretKey</code> - integration with reCaptcha.</li>
+                            <li><code>secret</code> - put here a random string and do not share it with anyone,</li>
+                            <li><code>locale</code> - default language,</li>
+                            <li><code>defaultTimezone</code> - default timezone, specified as Country/City,</li>
+                            <li><code>sourceMail</code> - mail sender address added to the sent mail messages,</li>
+                            <li><code>recaptcha_siteKey</code> and <code>recaptcha_secretKey</code> - integration with reCaptcha.</li>
                         </ul>
                         
                         <p>Create the <code>app/Branding.php</code> and copy the contents of <code>app/Branding.example.php</code> to it.
                         Here you can customize the application, add a custom name, logo, etc.</p>
+                        
+                        <p>Download the dependencies with composer:</p>
+                        
+                        <pre><code># composer install</code></pre>
 
-                    <p>That's all. If you have a standalone web server, point it to <code>web/</code> directory as the home directory. Do not make the rest of the
-                    directories accessible through the web server. For development purposes, you can use a HTTP server embedded in PHP. Just run the following command:</p>
-
-                    <pre><code># php bin/console server:run</code></pre>
-                    
-                    <p>The web application will be available under <a href="http://localhost:8000/">http://localhost:8000/</a> address.
-                    The default credentials are <strong>administrator</strong> - <strong>Admin56789</strong></p>
+                        <p>Install the database:</p>
+                        
+                        <pre><code># php bin/console cantiga:install:db --env=prod -i --type=mysql</code></pre>
+                        
+                        <p>The command creates a new database, and imports the structure and initial data to it. </p>
+                        
+                        <p>That's all. Remember that the HTTP server configuration must point to <code>web/</code> directory in
+                        order to serve the application. Do not make the rest of the directories accessible through the web server.
+                        Open the browser and type the default URL to the application, as configured in your web server.
+                        The default credentials to login are <strong>administrator</strong> - <strong>Admin56789</strong>.</p>
+                        
+                        <h2>Tips and tricks</h2>
+                        
+                        <h4>Composer not available</h4>
+                        
+                        <p>Sometimes, composer may not be available on the production server. All the dependencies are
+                        installed in <code>vendor/</code> directory. Just run composer locally, and copy the contents of
+                        this directory to the production server.</p>
+                        
+                        <h4>Manual database import</h4>
+                        
+                        <p>If the console cannot be used to install the database, you can find the necessary SQL files
+                        <code>fresh-structure.sql</code> and <code>fresh-data.sql</code> in <code>db/mysql</code> directory.</p>
+                        
+                        <h4>Running a built-in HTTP server</h4>
+                        
+                        <p>For development purposes, you do not have to install a standalone HTTP server. Call the following command:</p>
+                        
+                        <pre><code># php bin/console server:run</code></pre>
+                        
+                        <p>to run an embedded HTTP server. The web application will be available under <a href="http://localhost:8000/">http://localhost:8000/</a> address.</p>
+                        
+                        <h4>Development mail server</h4>
+                        
+                        <p>For development purposes, you can use the <a href="https://mailcatcher.me">mailcatcher</a> application which emulates a mail server and provides a nice web interface to inspect the mail content.</p>
 					</article>
-		
 			</div>
 		</div>
 	</section>			
