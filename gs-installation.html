@@ -33,43 +33,22 @@ layout: default
                         
                         <h2>Installation</h2>
                         
+                        <p>Below, you can find a brief installation instructions. More about post-install configuration
+                        of the system can be found in the <a href="http://cantiga.readthedocs.io/en/latest/">user manual</a>.</p>
+                        
                         <p>Visit <a href="download.html">Download</a> page and get a tarball with the sources of Cantiga,
                         or clone them directly from Git repository:</p>
                         
                         <pre><code># mkdir cantiga
 # cd cantiga
-# git clone https://github.com/zyxist/cantiga.git .</code></pre>
+# git clone -b 1.0.x https://github.com/zyxist/cantiga.git .</code></pre>
                         
-                        <p>Create a new file <code>app/config/parameters.yml</code> and copy the contents of <code>app/config/parameters.yml.dist</code> to it. Explanation of options:</p>
-                        
-                        <ul class="default">
-                            <li><code>database_host</code> - host the database is available at,</li>
-                            <li><code>database_port</code> - database port (leave null to use default one),</li>
-                            <li><code>database_name</code> - database name,</li>
-                            <li><code>database_user</code> - db user with rights to access that database,</li>
-                            <li><code>database_password</code> - db password,</li>
-                            <li><code>mailer_transport</code> - protocol used for sending e-mails (<code>smtp</code> by default),</li>
-                            <li><code>mailer_host</code> - address of the mail server,</li>
-                            <li><code>mailer_user</code> - name of the account used for sending e-mails,</li>
-                            <li><code>mailer_password</code> - password for the mail account,</li>
-                        </ul>
-                        
-                        <p>Remaining options:</p>
-                        
-                        <ul class="default">
-                            <li><code>secret</code> - put here a random string and do not share it with anyone,</li>
-                            <li><code>locale</code> - default language,</li>
-                            <li><code>defaultTimezone</code> - default timezone, specified as Country/City,</li>
-                            <li><code>sourceMail</code> - mail sender address added to the sent mail messages,</li>
-                            <li><code>recaptcha_siteKey</code> and <code>recaptcha_secretKey</code> - integration with reCaptcha.</li>
-                        </ul>
-                        
-                        <p>Create the <code>app/Branding.php</code> and copy the contents of <code>app/Branding.example.php</code> to it.
-                        Here you can customize the application, add a custom name, logo, etc.</p>
-                        
-                        <p>Download the dependencies with composer:</p>
+                        <p>Run the composer to download the dependencies and create the initial configuration:</p>
                         
                         <pre><code># composer install</code></pre>
+                        
+                        <p>During the installation, you will be asked a couple of questions about database connection
+                        parameters, mail setup, etc.</p>
 
                         <p>Install the database:</p>
                         

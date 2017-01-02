@@ -3,7 +3,6 @@ title: Download Cantiga
 layout: default
 ---
 	
-<!-- Main -->
 	<section class="wrapper style1">
 		<div class="container">
 			<div class="row double">
@@ -11,28 +10,42 @@ layout: default
                     <div id="sidebar">
                         <section>
                             <footer>
-                                <a href="https://github.com/zyxist/cantiga/archive/master.zip" class="button">Download MASTER</a>
+                                <p>Stable version: <strong>1.0.0</strong></p>
+                                <p>Released: January 2, 2017</p>
+                                <a href="https://github.com/zyxist/cantiga/archive/cantiga-1.0.0.zip" class="button">Download 1.0.0</a>
+                                <a href="https://github.com/zyxist/cantiga/releases/tag/cantiga-1.0.0" class="button">Release notes</a>
                             </footer>
                         </section>
                     </div>
 				</div>
 				<div class="8u skel-cell-important">
 					<div id="content">
-
-						<!-- Content -->
-					
-							<article>
-								<header>
-									<h2>Downloads</h2>
-									<p>How to get Cantiga</p>
-								</header>
-								
-								<p>The most recent code version is available to download from <a href="https://github.com/zyxist/cantiga/archive/master.zip">Github</a>. Currently we have not released any named
-								versions yet, and the first such version is expected to appear after finishing the discussion board
-								feature and splitting out the last pieces of code specific to the original project Cantiga was used for.</p>
-								
-								<p>You can also clone entire <a href="https://github.com/zyxist/cantiga">Git repository</a>.</p>
-							</article>
+						<article>
+							<header>
+								<h2>Downloads</h2>
+								<p>How to get Cantiga</p>
+							</header>
+							
+							<h3>Stable branch</h3>
+							
+							<p>The current stable branch is <strong>1.0.x</strong>. We recommend using the most recent stable
+							branch for production purposes. The versions released on this branch contain bugfixes only.</p>
+							
+							<p>Branch name for syncing with Git repositories: <code>1.0.x</code></p>
+							
+							<p>Clone from Git:</p>
+							
+							<pre><code>git clone -b 1.0.x https://github.com/zyxist/cantiga.git</code></pre>
+							
+							<h3>Development branch</h3>
+							
+							<p>The development branch is used for implementing new features and backward-incompatible changes. We do not
+							recommend using this version for production purposes, as the commits may break things without warnings.</p>
+							
+							<p>Clone from Git:</p>
+							
+							<pre><code>git clone -b master https://github.com/zyxist/cantiga.git</code></pre>
+                        </article>
 					</div>
 				</div>
 			</div>
